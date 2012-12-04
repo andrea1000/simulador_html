@@ -2,7 +2,7 @@
 $cabecera = '<script src="Script/Script.js" type="text/javascript"></script>';
 include 'header.php';
 ?>
-<div class="formulario">         
+<div class="formulario">          
     <table class="form">
         <tbody>
             <tr>
