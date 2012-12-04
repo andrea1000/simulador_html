@@ -85,6 +85,6 @@ include 'header.php';
     </tbody>
 </table>
 <?php
-//hola
+//hola2
 include 'footer.php';
 ?>
