@@ -15,4 +15,4 @@
             <img id="logoprint" src="Image/logoprint.jpg" alt="Profinanzas" />
         </div>
         <div class="interno">
-            <div class="formulario">
+            <div class="formulario"> 
