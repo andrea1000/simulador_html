@@ -1,0 +1,102 @@
+body
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    background-color: #fce48a;
+    margin-top: 0px;
+}
+
+.mensajeError
+{
+    color: Red;
+    font-size: 15px;
+}
+
+.contenedor
+{
+    width: 750px;
+    margin: 0px auto;
+    padding-top: 12px;
+    text-align: center;
+}
+
+.interno
+{
+    background-color: #FFF0B3;
+    margin: 0px auto;
+    padding: 30px 10px;
+}
+
+.formulario
+{
+    background-color: #C0C0C0;
+    padding: 8px;
+}
+
+.credito
+{
+    padding-top: 35px;
+}
+
+td.label
+{
+    background-color: #0265c0;
+    color: #ffffff;
+    width: 145px;
+    text-align: left;
+    padding-left: 12px;
+}
+
+td.input
+{
+    text-align: left;
+}
+
+td.input select
+{
+    width: 80%;
+}
+
+table.form
+{
+    width: 100%;
+}
+
+td.titulo
+{
+    text-align: center;
+}
+td.titulo span
+{
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+}
+input.numerico
+{
+    text-align: right;
+}
+.logo
+{
+    padding: 15px 0;
+    width: 100%;
+    height: 65px;
+}
+.button
+{
+    cursor: pointer;
+}
+tr.fila
+{
+    text-align: right;
+}
+#logoprint, td.input span.labelInput, td.separador
+{
+    display: none;
+}
+tr.total
+{
+    color: White;
+    background-color: #0265C0;
+    font-weight: bold;
+}

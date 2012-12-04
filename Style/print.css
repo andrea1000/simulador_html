@@ -1,0 +1,114 @@
+body
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    margin-top: 0px;
+}
+
+.contenedor
+{
+    width: 750px;
+    margin: 0px auto;
+    padding-top: 12px;
+    text-align: center;
+}
+
+.interno
+{
+    margin: 0px auto;
+    padding: 0 10px;
+}
+
+.formulario
+{
+    padding: 8px;
+}
+
+.credito
+{
+    padding-top: 35px;
+}
+
+td.label
+{
+    color: #000;
+    width: 145px;
+    text-align: left;
+    padding-left: 12px;
+    font-weight: bold;
+    border: 1px solid #000;
+}
+
+td.input
+{
+    text-align: left;
+    border: 1px solid #000;
+    padding-left: 12px;
+}
+
+
+table#cronograma, table#cronograma td
+{
+    border: 1px solid #000;
+}
+
+th, tr.total, td.Cuota, td.CuotaITF
+{
+    color: #000;
+    font-weight: bold;
+    border: 1px solid #000;
+}
+
+td.input select
+{
+    width: 80%;
+}
+
+table.form
+{
+    width: 100%;
+}
+
+td.titulo
+{
+    text-align: center;
+}
+td.titulo span
+{
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+input.numerico, input
+{
+    text-align: left;
+    width: 60px;
+    font-size: 9px;
+}
+.logo
+{
+    padding: 15px 0;
+    width: 100%;
+    height: 65px;
+}
+#logo, table#ctl00_Cuerpo_rbtnMoneda
+{
+    display: none;
+}
+select, .button
+{
+    visibility: hidden;
+}
+tr.fila
+{
+    text-align: right;
+}
+span#ctl00_Cuerpo_lblPMoneda
+{
+    padding: 5px 0 5px 0;
+    display: block;
+}
+td.separador
+{
+    height: 100px;
+}
