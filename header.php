@@ -5,6 +5,7 @@
     <title>.: PROFINANZAS :.</title>
     <link href="Style/estilo.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <link href="Style/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script type="text/javascript" src="Script/jquery.min.js"></script>
     <?=$cabecera?>
 </head>
 <body>
