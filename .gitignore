@@ -2,19 +2,6 @@
 ## Eclipse
 #################
 
-*.pydevproject
-.project
-.metadata
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.classpath
-.settings/
-.loadpath
 
 # External tool builders
 .externalToolBuilders/
@@ -38,7 +25,20 @@ local.properties
 
 # User-specific files
 *.suo
-*.user
+*.user*.pydevproject
+.project
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
 *.sln.docstates
 
 # Build results
