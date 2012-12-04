@@ -50,7 +50,7 @@ include 'header.php';
                 <td class="input">
                     <table border="0">
                         <tbody><tr>
-                                <td><input type="radio" value="1" checked="checked"><label>Soles</label></td><td><input type="radio" value="2"><label>Dólares</label></td>
+                                <td><label><input name="moneda" type="radio" value="1" checked="checked">Soles</label></td><td><label><input name="moneda" type="radio" value="2">Dólares</label></td>
                             </tr>
                         </tbody>
                     </table>
