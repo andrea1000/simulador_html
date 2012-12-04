@@ -19,7 +19,7 @@ include 'header.php';
                     <label>Producto</label>
                 </td>
                 <td class="input">
-                    <select>
+                    <select id="cboProducto" name="cboProducto">
 
                     </select>
                 </td>
@@ -29,7 +29,7 @@ include 'header.php';
                     <label>Agencia de Solicitud</label>
                 </td>
                 <td class="input">
-                    <select>
+                    <select id="cboAgencia" name="cboAgencia">
 
                     </select>
                 </td>
@@ -68,7 +68,7 @@ include 'header.php';
                     <label>Tasa General</label>
                 </td>
                 <td class="input">
-                    <select style="width: 156px;">
+                    <select id="cboTasaGeneral" name="cboTasaGeneral" style="width: 156px;">
                     </select>
                 </td>
             </tr>
@@ -83,6 +83,9 @@ include 'header.php';
 </div>
 <script>
 	getCboTipoProductoCredito("#cboTipoProductoCredito");
+	getCboProducto("#cboProducto");
+	getCboAgencia("#cboAgencia");
+	getCboTasaGeneral("#cboTasaGeneral");
 </script>
 <?php
 include 'footer.php';
