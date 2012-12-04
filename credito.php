@@ -1,10 +1,9 @@
 <?php
-
 $cabecera = '<script src="Script/Script.js" type="text/javascript"></script>';
 include 'header.php';
 ?>
 <div class="formulario">         
- <table class="form">
+    <table class="form">
         <tbody>
             <tr>
                 <td class="label">
@@ -12,7 +11,7 @@ include 'header.php';
                 </td>
                 <td class="input">
                     <select>
-					
+
                     </select>
                 </td>
             </tr>
@@ -22,7 +21,7 @@ include 'header.php';
                 </td>
                 <td class="input">
                     <select>
-					
+
                     </select>
                 </td>
             </tr>
@@ -33,7 +32,7 @@ include 'header.php';
                 <td class="input">
                     <select>
 
-					</select>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -50,10 +49,11 @@ include 'header.php';
                 </td>
                 <td class="input">
                     <table border="0">
-	<tbody><tr>
-		<td><input type="radio" value="1" checked="checked"><label>Soles</label></td><td><input type="radio" value="2"><label>Dólares</label></td>
-	</tr>
-</tbody></table>
+                        <tbody><tr>
+                                <td><input type="radio" value="1" checked="checked"><label>Soles</label></td><td><input type="radio" value="2"><label>Dólares</label></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </td>
             </tr>
             <tr>
@@ -70,7 +70,7 @@ include 'header.php';
                 </td>
                 <td class="input">
                     <select style="width: 156px;">
-					</select>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -81,7 +81,7 @@ include 'header.php';
         </tbody>
     </table>
 
-    </div>
+</div>
 
 <?php
 include 'footer.php';
