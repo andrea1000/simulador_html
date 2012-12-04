@@ -146,7 +146,6 @@ include 'header.php';
             </tr>
         </tbody>
     </table>
-
             </div>
 <?php
 include 'footer.php';
