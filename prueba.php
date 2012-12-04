@@ -20,16 +20,16 @@ include 'header.php';
 
 <script>
 
-$.get("data.xml", function (xml) {
-	$(xml).find("parametrica").each(function () {
-	$(this).find("registro").each(function () {
-       var name = $(this).find('nParCodigo').text();
- 
-       $("#display").append(name+"<br/>");
-	});
-
-    });
-    
+$.get("data.xml",function(xml)
+{
+	$(xml).find("parametrica").each(function()
+	{
+		$(this).find("registro").each(function()
+		{
+		   var name = $(this).find('nParCodigo').text();
+		   $("#display").append(name+"<br/>");
+		});
+    });   
 });
 
 </script>
