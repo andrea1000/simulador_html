@@ -10,8 +10,7 @@ include 'header.php';
                     <label>Tipo Producto de Crédito</label>
                 </td>
                 <td class="input">
-                    <select>
-
+                    <select id="cboTipoProductoCredito" name="cboTipoProductoCredito">
                     </select>
                 </td>
             </tr>
@@ -82,7 +81,9 @@ include 'header.php';
     </table>
 
 </div>
-
+<script>
+	getCboTipoProductoCredito("#cboTipoProductoCredito");
+</script>
 <?php
 include 'footer.php';
 ?>
