@@ -7,7 +7,7 @@ function isNumberKey(evt) {
     return true;
 }
 
-function getCboTipoProductoCredito(object)
+function getCboTipoProductoCredito(object,selitem)
 {
 	$.get(rutaXml,function(xml)
 	{
@@ -23,10 +23,14 @@ function getCboTipoProductoCredito(object)
 			   }
 			});
 		});
+		if(selitem!="")
+		{
+			$(object+" option[value="+selitem+"]").attr("selected",true);
+		}
 	});
 }
 
-function getCboProductoCre(object)
+function getCboProductoCre(object,selitem)
 {
 	var values=Array();
 	values[14]=[32,42];
@@ -52,10 +56,14 @@ function getCboProductoCre(object)
 			   }
 			});
 		});
+		if(selitem!="")
+		{
+			$(object+" option[value="+selitem+"]").attr("selected",true);
+		}
 	});
 }
 
-function getCboAgencia(object)
+function getCboAgencia(object,selitem)
 {
 	$.get(rutaXml,function(xml)
 	{
@@ -71,10 +79,14 @@ function getCboAgencia(object)
 			   }
 			});
 		});
+		if(selitem!="")
+		{
+			$(object+" option[value="+selitem+"]").attr("selected",true);
+		}
 	});
 }
 
-function getCboTasaGeneral(object)
+function getCboTasaGeneral(object,selitem)
 {
 	$.get(rutaXml,function(xml)
 	{
@@ -90,10 +102,14 @@ function getCboTasaGeneral(object)
 			   }
 			});
 		});
+		if(selitem!="")
+		{
+			$(object+" option[value="+selitem+"]").attr("selected",true);
+		}
 	});
 }
 
-function getCboProductoDep(object)
+function getCboProductoDep(object,selitem)
 {
 	$.get(rutaXml,function(xml)
 	{
@@ -110,10 +126,14 @@ function getCboProductoDep(object)
 			   }
 			});
 		});
+		if(selitem!="")
+		{
+			$(object+" option[value="+selitem+"]").attr("selected",true);
+		}
 	});
 }
 
-function getCboSubProducto(object)
+function getCboSubProducto(object,selitem)
 {
 	var values=Array();
 	values[20]=[23,24];
@@ -156,10 +176,14 @@ function getCboSubProducto(object)
 			   }
 			});
 		});
+		if(selitem!="")
+		{
+			$(object+" option[value="+selitem+"]").attr("selected",true);
+		}
 	});
 }
 
-function getCboModalidadPagoInteres(object)
+function getCboModalidadPagoInteres(object,selitem)
 {
 	$.get(rutaXml,function(xml)
 	{
@@ -175,6 +199,10 @@ function getCboModalidadPagoInteres(object)
 			   }
 			});
 		});
+		if(selitem!="")
+		{
+			$(object+" option[value="+selitem+"]").attr("selected",true);
+		}
 	});
 }
 

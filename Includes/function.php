@@ -11,33 +11,18 @@ class ClassDeposito
 	public $ExisteError;
 	public $Mensaje;
 
-	function GetValorParametro($nParCodigo)
-	{
-		if (file_exists('data.xml'))
-		{
-			$xml = simplexml_load_file("data.xml");
-		}
-		else
-		{
-			exit('Error!..');
-		}
-
-		foreach($xml->parametrica->registro as $child)
-		{
-			if($child->nParCodigo==$nParCodigo)
-			{
-				return $child->cParValor;
-				exit;
-			}
-		}
-	}
-
 	function DepositoPago($pMonto,$pPlazo,$pModalidad,$pCodMoneda,$pTipoProd,$pCodProducto,$pCodAgencia)
 	{
+		$Parametro=new Parametro();
+		$parTarifario=new parTarifario();
+		
 		$FACTOR=0;
-		$anioBase=$this->GetValorParametro(ParametroPadre::AnioBase);
-		$_ITF=$this->GetValorParametro(ParametroPadre::ITF);
-		$diasMensual=$this->GetValorParametro(ParametroPadre::Mes);
+		$anioBase=$Parametro->GetValorParametro(ParametroPadre::AnioBase);
+		$_ITF=$Parametro->GetValorParametro(ParametroPadre::ITF);
+		$diasMensual=$Parametro->GetValorParametro(ParametroPadre::Mes);
+		
+		
+		$this->Tasa = $parTarifario->nTarTasaMinima;
 
 		$this->Monto=$pMonto;
 		if ($pTipoProd != TipoProducto::CTS)
@@ -49,12 +34,12 @@ class ClassDeposito
             {
                 case TipoProducto::Corriente:
 
-                    $FACTOR = (Math.Pow((1 + Tasa / 100.00), (pPlazo / anioBase)) - 1);
+                    $FACTOR = (Math.Pow((1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
                     $this->InteresGanado = $FACTOR * $pMonto;
                     break;
                 case TipoProducto::PlazoFijo:
 
-                    $tarDia = oParametro.GetTarifarioDia(ParametroPadre::TipoDeposito, $pCodProducto, $pCodAgencia, $pCodMoneda, $pMonto,$pPlazo);
+                    $tarDia=$Parametro->GetTarifarioDia(ParametroPadre::TipoDeposito, $pCodProducto, $pCodAgencia, $pCodMoneda, $pMonto,$pPlazo);
                     if ($tarDia != null)
                         $this->Tasa = 0;
 

@@ -2,7 +2,8 @@
 $cabecera = '<script src="Script/Script.js" type="text/javascript"></script>';
 include 'header.php';
 ?>
-<div class="formulario">          
+<div class="formulario"> 
+	<form method="post">         
     <table class="form">
         <tbody>
             <tr>
@@ -39,7 +40,7 @@ include 'header.php';
                     <label>Monto</label>
                 </td>
                 <td class="input">
-                    <input type="text" class="numerico" onkeypress="return isNumberKey(event)">
+                    <input id="txtMonto" name="txtMonto" type="text" class="numerico" onkeypress="return isNumberKey(event)" value="<?php echo $_POST["txtMonto"];?>">
                 </td>
             </tr>
             <tr>
@@ -48,11 +49,10 @@ include 'header.php';
                 </td>
                 <td class="input">
                     <table border="0">
-                        <tbody><tr>
-                                <td><label><input name="moneda" type="radio" value="1" checked="checked">Soles</label></td><td><label><input name="moneda" type="radio" value="2">Dólares</label></td>
-                            </tr>
-                        </tbody>
-                    </table>
+	<tbody><tr>
+		<td><label><input name="radCodMoneda" type="radio" value="1" <?php if($_POST["radCodMoneda"]==1 or $_POST["radCodMoneda"]==""){ echo 'checked="checked"'; } ?> >Soles</label></td><td><label><input name="radCodMoneda" type="radio" value="2" <?php if($_POST["radCodMoneda"]==2){ echo 'checked="checked"'; } ?>>Dólares</label></td>
+	</tr>
+</tbody></table>
                 </td>
             </tr>
             <tr>
@@ -60,7 +60,7 @@ include 'header.php';
                     <label>Nro de Cuotas</label>
                 </td>
                 <td class="input">
-                    <input type="text" class="numerico" onkeypress="return isNumberKey(event)">
+                    <input id="txtNroCuotas" name="txtNroCuotas" type="text" class="numerico" onkeypress="return isNumberKey(event)" value="<?php echo $_POST["txtNroCuotas"];?>">
                 </td>
             </tr>
             <tr>
@@ -79,13 +79,13 @@ include 'header.php';
             </tr>
         </tbody>
     </table>
-
+	</form>
 </div>
 <script>
-	getCboTipoProductoCredito("#cboTipoProductoCredito");
-	getCboProductoCre("#cboProducto");
-	getCboAgencia("#cboAgencia");
-	getCboTasaGeneral("#cboTasaGeneral");
+	getCboTipoProductoCredito("#cboTipoProductoCredito","<?php echo $_POST["cboTipoProductoCredito"];?>");
+	getCboProductoCre("#cboProducto","<?php echo $_POST["cboProducto"];?>");
+	getCboAgencia("#cboAgencia","<?php echo $_POST["cboAgencia"];?>");
+	getCboTasaGeneral("#cboTasaGeneral","<?php echo $_POST["cboTasaGeneral"];?>");
 </script>
 <?php
 include 'footer.php';

@@ -82,7 +82,7 @@ if($_POST)
                     
                     <table border="0">
 	<tbody><tr>
-		<td><label><input name="radCodMoneda" type="radio" value="1" >Soles</label></td><td><label><input name="radCodMoneda" type="radio" value="2">Dólares</label></td>
+		<td><label><input name="radCodMoneda" type="radio" value="1" <?php if($_POST["radCodMoneda"]==1 or $_POST["radCodMoneda"]==""){ echo 'checked="checked"'; } ?> >Soles</label></td><td><label><input name="radCodMoneda" type="radio" value="2" <?php if($_POST["radCodMoneda"]==2){ echo 'checked="checked"'; } ?>>Dólares</label></td>
 	</tr>
 </tbody></table>
                 </td>
@@ -165,10 +165,10 @@ if($_POST)
     </form>
 </div>
 <script>
-	getCboProductoDep("#cboProducto");
-	getCboSubProducto("#cboSubProducto");
-	getCboModalidadPagoInteres("#cboModalidadPagoInteres");
-	getCboAgencia("#cboAgencia");
+	getCboProductoDep("#cboProducto","<?php echo $_POST["cboProducto"];?>");
+	getCboSubProducto("#cboSubProducto","<?php echo $_POST["cboSubProducto"];?>");
+	getCboModalidadPagoInteres("#cboModalidadPagoInteres","<?php echo $_POST["cboModalidadPagoInteres"];?>");
+	getCboAgencia("#cboAgencia","<?php echo $_POST["cboAgencia"];?>");
 	getTxtAnioBase("#txtAnioBase");
 	getTxtITF("#txtITF");
 </script>
