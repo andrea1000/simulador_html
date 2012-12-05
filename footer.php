@@ -3,6 +3,6 @@
         <div class="credito">
             <span>©2012 PROFINANZAS</span></div>
     </div>
-    </form>
+    <!--</form>-->
 </body>
 </html>
