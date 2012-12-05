@@ -59,7 +59,7 @@ if($_POST)
                     <label>Monto</label>
                 </td>
                 <td class="input">
-                    <input name="txtMonto" type="text" class="numerico" id="txtMonto">
+                    <input name="txtMonto" type="text" class="numerico" id="txtMonto" value="<?php echo $_POST["txtMonto"];?>">
                 </td>
             </tr>
             <tr>
@@ -80,7 +80,7 @@ if($_POST)
                     <label>Plazo</label>
                 </td>
                 <td class="input">
-                    <input name="txtPlazo" type="text" class="numerico" id="txtPlazo" onkeypress="return isNumberKey(event)">
+                    <input name="txtPlazo" type="text" class="numerico" id="txtPlazo" onkeypress="return isNumberKey(event)" value="<?php echo $_POST["txtPlazo"];?>">
                     &nbsp;días
                 </td>
             </tr>
@@ -108,13 +108,13 @@ if($_POST)
                                 <label>Interés Generado</label>
                             </td>
                             <td class="input">
-                                <input type="text" readonly="true" value="<?php echo $ClsDeposito->InteresGanado;?>">
+                                <input type="text" readonly="true" class="numerico" value="<?php echo $ClsDeposito->InteresGanado;?>">
                             </td>
                             <td class="label">
                                 <label>Tasa Efectiva Anual</label>
                             </td>
                             <td class="input">
-                                <input type="text" readonly="true" value="<?php echo $ClsDeposito->Tasa;?>">
+                                <input type="text" readonly="true" class="numerico" value="<?php echo $ClsDeposito->Tasa;?>">
                             </td>
                         </tr>
                         <tr>
@@ -122,7 +122,7 @@ if($_POST)
                                 <label>ITF</label>
                             </td>
                             <td class="input">
-                                <input type="text" readonly="true" value="<?php echo $ClsDeposito->ITF;?>">
+                                <input type="text" readonly="true" class="numerico" value="<?php echo $ClsDeposito->ITF;?>">
                             </td>
                             <td class="label">
                                 <label>Año Base</label>
@@ -136,7 +136,7 @@ if($_POST)
                                 <label>Monto total a pagar</label>
                             </td>
                             <td class="input">
-                                <input type="text" readonly="true" value="<?php echo $ClsDeposito->TotalPagar;?>">
+                                <input type="text" readonly="true" class="numerico" value="<?php echo $ClsDeposito->TotalPagar;?>">
                             </td>
                             <td class="label">
                                 <label>Impuesto Transacciones Financiera</label>
