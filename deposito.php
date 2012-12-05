@@ -24,7 +24,7 @@ include 'header.php';
                 </td>
                 <td class="input">
                     
-                    <select>
+                    <select id="cboProducto" name="cboProducto" onchange='getCboSubProducto("#cboSubProducto");'>
 
 					</select>
                 </td>
@@ -34,7 +34,7 @@ include 'header.php';
                     <label>Sub Producto</label>
                 </td>
                 <td class="input">
-                    <select>
+                    <select id="cboSubProducto" name="cboSubProducto">
 
 					</select>
                 </td>
@@ -44,7 +44,7 @@ include 'header.php';
                     <label>Agencia de Solicitud :</label>
                 </td>
                 <td class="input">
-                    <select>
+                    <select id="cboAgencia" name="cboAgencia">
 
 					</select>
                 </td>
@@ -81,8 +81,8 @@ include 'header.php';
                 </td>
             </tr>
             <tr>
-                <td align="right" colspan="2">
-                   &nbsp;
+                <td align="right" colspan="2">&nbsp;
+                   
                 </td>
             </tr>
             <tr>
@@ -124,7 +124,7 @@ include 'header.php';
                                 <label>Año Base</label>
                             </td>
                             <td class="input">
-                                <input type="text" value="" readonly="true">
+                                <input id="txtAnioBase" name="txtAnioBase" type="text" readonly="true" class="numerico" style="width:125px;"> días
                             </td>
                         </tr>
                         <tr>
@@ -138,7 +138,7 @@ include 'header.php';
                                 <label>Impuesto Transacciones Financiera</label>
                             </td>
                             <td class="input">
-                                <input type="text" value="" readonly="true">
+                                <input id="txtITF" name="txtITF" type="text" readonly="true" class="numerico" style="width:125px;"> %
                             </td>
                         </tr>
                     </tbody></table>
@@ -146,7 +146,14 @@ include 'header.php';
             </tr>
         </tbody>
     </table>
-            </div>
+</div>
+<script>
+	getCboProductoDep("#cboProducto");
+	getCboSubProducto("#cboSubProducto");
+	getCboAgencia("#cboAgencia");
+	getTxtAnioBase("#txtAnioBase");
+	getTxtITF("#txtITF");
+</script>
 <?php
 include 'footer.php';
 ?>

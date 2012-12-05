@@ -10,7 +10,7 @@ include 'header.php';
                     <label>Tipo Producto de Crédito</label>
                 </td>
                 <td class="input">
-                    <select id="cboTipoProductoCredito" name="cboTipoProductoCredito">
+                    <select id="cboTipoProductoCredito" name="cboTipoProductoCredito" onchange='getCboProductoCre("#cboProducto");'>
                     </select>
                 </td>
             </tr>
@@ -83,7 +83,7 @@ include 'header.php';
 </div>
 <script>
 	getCboTipoProductoCredito("#cboTipoProductoCredito");
-	getCboProducto("#cboProducto");
+	getCboProductoCre("#cboProducto");
 	getCboAgencia("#cboAgencia");
 	getCboTasaGeneral("#cboTasaGeneral");
 </script>

@@ -20,7 +20,7 @@ include 'header.php';
 
 <script>
 
-$.get("data.xml",function(xml)
+/*$.get("data.xml",function(xml)
 {
 	$(xml).find("parametrica").each(function()
 	{
@@ -30,6 +30,20 @@ $.get("data.xml",function(xml)
 		   $("#display").append(name+"<br/>");
 		});
     });   
+});*/
+$(function()
+{
+	var values=Array();
+	
+	values[14]=[32,42];
+	values[15]=[43,44];
+	values[16]=[32,42];
+	values[17]=[32,42];
+	values[18]=[32,42];
+	values[19]=[32,42];
+	
+	var irango=values[14][0];
+	$("#display").append(irango+"<br/>");
 });
 
 </script>
