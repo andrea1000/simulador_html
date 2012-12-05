@@ -17,12 +17,13 @@ class ClassDeposito
 		$parTarifario=new parTarifario();
 		
 		$FACTOR=0;
-		$anioBase=$Parametro->GetValorParametro(ParametroPadre::AnioBase);
 		$_ITF=$Parametro->GetValorParametro(ParametroPadre::ITF);
 		$diasMensual=$Parametro->GetValorParametro(ParametroPadre::Mes);
+		$anioBase=$Parametro->GetValorParametro(ParametroPadre::AnioBase);
 		
 		
-		$this->Tasa = $parTarifario->nTarTasaMinima;
+		//$this->Tasa = $parTarifario->nTarTasaMinima;
+		$this->Tasa = 10;
 
 		$this->Monto=$pMonto;
 		if ($pTipoProd != TipoProducto::CTS)
@@ -34,31 +35,33 @@ class ClassDeposito
             {
                 case TipoProducto::Corriente:
 
-                    $FACTOR = (Math.Pow((1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
+                    $FACTOR = (pow((1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
                     $this->InteresGanado = $FACTOR * $pMonto;
                     break;
                 case TipoProducto::PlazoFijo:
 
                     $tarDia=$Parametro->GetTarifarioDia(ParametroPadre::TipoDeposito, $pCodProducto, $pCodAgencia, $pCodMoneda, $pMonto,$pPlazo);
-                    if ($tarDia != null)
+                    if ($tarDia != "")
+					{
                         $this->Tasa = 0;
+					}
 
                     switch ($pModalidad)
                     {
                         case ModalidadInteres::Vencimiento:
-                            $FACTOR = (Math.Pow((Double)(1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
+                            $FACTOR = (pow((Double)(1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
                             break;
                         case ModalidadInteres::Mensual:
-                            $FACTOR = (Math.Pow((Double)(1 + $this->Tasa / 100.00), ($diasMensual / $anioBase)) - 1);
+                            $FACTOR = (pow((Double)(1 + $this->Tasa / 100.00), ($diasMensual / $anioBase)) - 1);
                             break;
                         case ModalidadInteres::Adelantado:
-                            $FACTOR = (1 - Math.Pow((Double)(1 + $this->Tasa / 100.00), (Double)(-1)) * ($diasMensual / $anioBase));
+                            $FACTOR = (1 - pow((Double)(1 + $this->Tasa / 100.00), (Double)(-1)) * ($diasMensual / $anioBase));
                             break;
                     }
                     $this->InteresGanado = $FACTOR * $pMonto;
                     break;
                 case TipoProducto::CTS:
-                    $FACTOR = (Math.Pow((1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
+                    $FACTOR = (pow((1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
                     $this->InteresGanado = $FACTOR * $pMonto;
                     break;
             }
