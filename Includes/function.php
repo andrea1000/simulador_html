@@ -1,87 +1,86 @@
 <?php		
-
-	function CronogramaPagos($p$monto,$pNroCuotas,$p$codMoneda,$p$codProducto,$p$codAgencia,$pCodTasa)
+include "parametrica.php";
+class ClassDeposito
 {
-            oParametro = new Parametro();
-            ExisteError = false;
-            Decimal _ITF, _Desgravamen, TEM, interes = 0M, amortizacion = 0M, saldoAnterior;
-            Int16 anioBase;
-            SByte diasMensual;
+	public $Monto;
+	public $Tasa;
+	public $InteresGanado;
+	public $ITFCalculado;
+	public $ITF;
+	public $TotalPagar;
+	public $ExisteError;
+	public $Mensaje;
 
-            var tarifario = oParametro.GetTarifario(ParametroPadre.$TipoCredito, $p$codProducto, $p$codAgencia, $p$codMoneda, $p$monto);
-            if (tarifario == null)
+	function GetValorParametro($nParCodigo)
+	{
+		if (file_exists('data.xml'))
+		{
+			$xml = simplexml_load_file("data.xml");
+		}
+		else
+		{
+			exit('Error!..');
+		}
+
+		foreach($xml->parametrica->registro as $child)
+		{
+			if($child->nParCodigo==$nParCodigo)
+			{
+				return $child->cParValor;
+				exit;
+			}
+		}
+	}
+
+	function DepositoPago($pMonto,$pPlazo,$pModalidad,$pCodMoneda,$pTipoProd,$pCodProducto,$pCodAgencia)
+	{
+		$FACTOR=0;
+		$anioBase=$this->GetValorParametro(ParametroPadre::AnioBase);
+		$_ITF=$this->GetValorParametro(ParametroPadre::ITF);
+		$diasMensual=$this->GetValorParametro(ParametroPadre::Mes);
+
+		$this->Monto=$pMonto;
+		if ($pTipoProd != TipoProducto::CTS)
+        {
+			$this->ITF = $_ITF;
+		}
+		
+		switch ($pTipoProd)
             {
-                ExisteError = true;
-                Mensaje = "No existe ningún tarifario para los valores ingresados.";
-                return;
-            }
-            TasaMoratoria = tarifario.nTarTasaMoratoria;
+                case TipoProducto::Corriente:
 
-            switch ($pCodTasa)
-            {
-                case 1: IEA = tarifario.nTarTasaMinima; break;
-                case 2: IEA = tarifario.nTarTasaMaxima; break;
-                default:
-                    ExisteError = true;
-                    Mensaje = "No existe tasa seleccionada.";
-                    return;
-            }
+                    $FACTOR = (Math.Pow((1 + Tasa / 100.00), (pPlazo / anioBase)) - 1);
+                    $this->InteresGanado = $FACTOR * $pMonto;
+                    break;
+                case TipoProducto::PlazoFijo:
 
-            Decimal.TryParse(oParametro.GetValorParametro(ParametroPadre.ITF), out _ITF);
-            Decimal.TryParse(oParametro.GetValorParametro(ParametroPadre.Desgravamen), out _Desgravamen);
-            Int16.TryParse(oParametro.GetValorParametro(ParametroPadre.AnioBase), out anioBase);
-            SByte.TryParse(oParametro.GetValorParametro(ParametroPadre.Mes), out diasMensual);
-            Moneda = oParametro.GetOne(ParametroPadre.Moneda, $p$codMoneda.ToString()).cParNombre;
-            ITF = _ITF;
-            Desgravamen = _Desgravamen;
-            Prestamo = saldoAnterior = $p$monto;
-            NroCuotas = $pNroCuotas;
-            FrecuenciaPago = "Mensual";
+                    $tarDia = oParametro.GetTarifarioDia(ParametroPadre::TipoDeposito, $pCodProducto, $pCodAgencia, $pCodMoneda, $pMonto,$pPlazo);
+                    if ($tarDia != null)
+                        $this->Tasa = 0;
 
-            // Tasa Efectivo Mensual:
-            TEM = (Decimal)((Math.Pow((1 + IEA / 100.00M), (1 / 12.00D)) - 1) * 100);
-            TEM = Math.Round(TEM, 2, MidpointRounding.AwayFromZero);
-
-            // Tasa Costo Efectivo Anual
-            TCEA = (Decimal)((Math.Pow((1 + TEM / 100.00M), 12.00D) - 1) * 100);
-            TCEA = Math.Round(TCEA, 2, MidpointRounding.AwayFromZero);
-
-            // Cuota del Crédito
-            CuotaMensual = Prestamo * ((Decimal)((TEM / 100.00 * (Decimal)Math.Pow((1 + TEM / 100.00M), NroCuotas))) / (Decimal)(Math.Pow((1 + TEM / 100.00), NroCuotas) - 1));
-            CuotaMensual = Math.Round(CuotaMensual, 2, MidpointRounding.AwayFromZero);
-
-            var lCronograma = new List<TarifarioE>();
-
-            for (int i = 0; i < NroCuotas; i++)
-            {
-                // Interes
-                interes = (Decimal)(Math.Pow((1 + IEA / 100.00M), (diasMensual / anioBase)) - 1) * saldoAnterior;
-                interes = Math.Round(interes, 2, MidpointRounding.AwayFromZero);
-
-                // Amoritzacion
-                amortizacion = CuotaMensual - interes;
-
-                // Verificar que el último saldo sea cero
-                if (i == (NroCuotas - 1) && (saldoAnterior - amortizacion) != 0)
-                {
-                    amortizacion += (saldoAnterior - amortizacion);
-                }
-
-                lCronograma.Add(new TarifarioE
-                {
-                    _ITF = ITF,
-                    Nro = i,
-                    Fecha = DateTime.Now.AddDays(diasMensual * (i + 1)),
-                    Amortizacion = amortizacion,
-                    Interes = interes,
-                    SaldoAnterior = saldoAnterior
-                });
-
-                saldoAnterior = saldoAnterior - amortizacion;
+                    switch ($pModalidad)
+                    {
+                        case ModalidadInteres::Vencimiento:
+                            $FACTOR = (Math.Pow((Double)(1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
+                            break;
+                        case ModalidadInteres::Mensual:
+                            $FACTOR = (Math.Pow((Double)(1 + $this->Tasa / 100.00), ($diasMensual / $anioBase)) - 1);
+                            break;
+                        case ModalidadInteres::Adelantado:
+                            $FACTOR = (1 - Math.Pow((Double)(1 + $this->Tasa / 100.00), (Double)(-1)) * ($diasMensual / $anioBase));
+                            break;
+                    }
+                    $this->InteresGanado = $FACTOR * $pMonto;
+                    break;
+                case TipoProducto::CTS:
+                    $FACTOR = (Math.Pow((1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
+                    $this->InteresGanado = $FACTOR * $pMonto;
+                    break;
             }
 
-            Tarifario = lCronograma;
-            
-        }
+            $this->ITFCalculado = ($this->Monto + $this->InteresGanado) * ($_ITF / 100.00);
+			$this->TotalPagar=$this->Monto + $this->InteresGanado - $this->ITFCalculado;
+	}
 
+}
 ?>

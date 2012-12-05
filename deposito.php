@@ -13,9 +13,15 @@ $cabecera = '
     </script>
 ';
 include 'header.php';
+include 'Includes/function.php';
+$ClsDeposito=new ClassDeposito();
+if($_POST)
+{
+	$ClsDeposito->DepositoPago($_POST["txtMonto"],$_POST["txtPlazo"],$_POST["cboModalidadPagoInteres"],$_POST["radCodMoneda"],$_POST["cboProducto"],$_POST["cboSubProducto"],$_POST["cboAgencia"]);
+}
 ?>
 <div class="formulario">
-     
+    <form method="post">
     <table class="form">
         <tbody>
             <tr>
@@ -65,7 +71,7 @@ include 'header.php';
                     <label>Monto</label>
                 </td>
                 <td class="input">
-                    <input type="text" class="numerico" >
+                    <input name="txtMonto" type="text" class="numerico" id="txtMonto">
                 </td>
             </tr>
             <tr>
@@ -76,7 +82,7 @@ include 'header.php';
                     
                     <table border="0">
 	<tbody><tr>
-		<td><label><input name="moneda" type="radio" value="1" checked="checked">Soles</label></td><td><label><input name="moneda" type="radio" value="2">Dólares</label></td>
+		<td><label><input name="radCodMoneda" type="radio" value="1" >Soles</label></td><td><label><input name="radCodMoneda" type="radio" value="2">Dólares</label></td>
 	</tr>
 </tbody></table>
                 </td>
@@ -86,7 +92,7 @@ include 'header.php';
                     <label>Plazo</label>
                 </td>
                 <td class="input">
-                    <input type="text" class="numerico" onkeypress="return isNumberKey(event)">
+                    <input name="txtPlazo" type="text" class="numerico" id="txtPlazo" onkeypress="return isNumberKey(event)">
                     &nbsp;días
                 </td>
             </tr>
@@ -114,13 +120,13 @@ include 'header.php';
                                 <label>Interés Generado</label>
                             </td>
                             <td class="input">
-                                <input type="text" readonly="true">
+                                <input type="text" readonly="true" value="<?php echo $ClsDeposito->InteresGanado;?>">
                             </td>
                             <td class="label">
                                 <label>Tasa Efectiva Anual</label>
                             </td>
                             <td class="input">
-                                <input type="text" readonly="true">
+                                <input type="text" readonly="true" value="<?php echo $ClsDeposito->Tasa;?>">
                             </td>
                         </tr>
                         <tr>
@@ -128,7 +134,7 @@ include 'header.php';
                                 <label>ITF</label>
                             </td>
                             <td class="input">
-                                <input type="text" readonly="true">
+                                <input type="text" readonly="true" value="<?php echo $ClsDeposito->ITF;?>">
                             </td>
                             <td class="label">
                                 <label>Año Base</label>
@@ -142,7 +148,7 @@ include 'header.php';
                                 <label>Monto total a pagar</label>
                             </td>
                             <td class="input">
-                                <input type="text" readonly="true">
+                                <input type="text" readonly="true" value="<?php echo $ClsDeposito->TotalPagar;?>">
                             </td>
                             <td class="label">
                                 <label>Impuesto Transacciones Financiera</label>
@@ -156,11 +162,12 @@ include 'header.php';
             </tr>
         </tbody>
     </table>
+    </form>
 </div>
 <script>
 	getCboProductoDep("#cboProducto");
 	getCboSubProducto("#cboSubProducto");
-	getCboModalidadPagoInteres("#cboModalidadPagoInteres")
+	getCboModalidadPagoInteres("#cboModalidadPagoInteres");
 	getCboAgencia("#cboAgencia");
 	getTxtAnioBase("#txtAnioBase");
 	getTxtITF("#txtITF");
