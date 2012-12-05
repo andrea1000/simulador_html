@@ -1,5 +1,4 @@
 <?php
-$cabecera = '<script src="Script/Script.js" type="text/javascript"></script>';
 include 'header.php';
 ?>
 <div class="formulario"> 
