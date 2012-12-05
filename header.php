@@ -9,7 +9,7 @@
     <?=$cabecera?>
 </head>
 <body>
-    <!--<form id="form1" runat="server">-->
+    <form id="form1" runat="server">
     <div class="contenedor">
         <div class="logo">
             <img id="logo" src="Image/logo.jpg" alt="Profinanzas" />
