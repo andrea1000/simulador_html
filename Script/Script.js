@@ -97,6 +97,7 @@ function getCboProductoDep(object)
 {
 	$.get(rutaXml,function(xml)
 	{
+
 		$(xml).find("parametrica").each(function()
 		{
 			$(this).find("registro").each(function()
@@ -121,6 +122,14 @@ function getCboSubProducto(object)
 	
 	$.get(rutaXml,function(xml)
 	{
+		if($("#cboProducto").val()==21)
+		{
+			$("#trModalidadPagoInteres").show();
+		}
+		else
+		{
+			$("#trModalidadPagoInteres").hide();
+		}
 		$(object).find("option").remove();
 		$(xml).find("parametrica").each(function()
 		{
@@ -144,6 +153,25 @@ function getCboSubProducto(object)
 							$(object).append(new Option(cParNombre,cParValor));
 					   
 				   }
+			   }
+			});
+		});
+	});
+}
+
+function getCboModalidadPagoInteres(object)
+{
+	$.get(rutaXml,function(xml)
+	{
+		$(xml).find("parametrica").each(function()
+		{
+			$(this).find("registro").each(function()
+			{
+			   var nParCodigo = $(this).find('nParCodigo').text();
+			   var cParNombre = $(this).find('cParNombre').text();
+			   if(nParCodigo>=74 && nParCodigo<=76)
+			   {
+			   	  $(object).append(new Option(cParNombre,nParCodigo));
 			   }
 			});
 		});

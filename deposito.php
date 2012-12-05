@@ -41,7 +41,7 @@ include 'header.php';
             </tr>
             <tr>
                 <td class="label">
-                    <label>Agencia de Solicitud :</label>
+                    <label>Agencia de Solicitud</label>
                 </td>
                 <td class="input">
                     <select id="cboAgencia" name="cboAgencia">
@@ -50,6 +50,16 @@ include 'header.php';
                 </td>
             </tr>
             
+            <tr id="trModalidadPagoInteres">
+              <td class="label">
+                    <label>Modalidad de Pago de Interés</label>
+                </td>
+                <td class="input">
+                    <select id="cboModalidadPagoInteres" name="cboModalidadPagoInteres">
+
+					</select>
+                </td>
+            </tr>
             <tr>
                 <td class="label">
                     <label>Monto</label>
@@ -150,6 +160,7 @@ include 'header.php';
 <script>
 	getCboProductoDep("#cboProducto");
 	getCboSubProducto("#cboSubProducto");
+	getCboModalidadPagoInteres("#cboModalidadPagoInteres")
 	getCboAgencia("#cboAgencia");
 	getTxtAnioBase("#txtAnioBase");
 	getTxtITF("#txtITF");
