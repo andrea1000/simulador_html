@@ -11,14 +11,14 @@ function validarDeposito()
 {
 	if(!($("#txtMonto").val()>=1 && $("#txtMonto").val()<=5000000))
 	{
-		alert("El rango del monto es de 1 a 5000000");
+		alert("El rango del monto debe ser de 1 a 5000000");
 		$("txtMonto").focus();
 		return false;
 	}
 	
 	if(!($("#txtPlazo").val()>=1 && $("#txtPlazo").val()<=3600))
 	{
-		alert("El rango del plazo es de 1 a 3600");
+		alert("El rango del plazo debe ser de 1 a 3600");
 		$("txtMonto").focus();
 		return false;
 	}

@@ -81,7 +81,7 @@ class Parametro
 		}
 		else
 		{
-			echo '<script>alert("No existe ningún tarifario para los valores ingresados.");</script>';
+			echo '<script>alert("No se pudieron cargar los datos.");</script>';
 			return false;
 		}
 
@@ -98,13 +98,13 @@ class Parametro
 	function GetAgencia($codAgencia)
     {
             $piloto;
-			if (file_exists('data.xml'))
+			if (file_exists($this->ruta_xml))
 			{
 				$xml = simplexml_load_file($this->ruta_xml);
 			}
 			else
 			{
-				echo '<script>alert("No existe ningún tarifario para los valores ingresados.");</script>';
+				echo '<script>alert("No se pudieron cargar los datos.");</script>';
 				return false;
 			}
 
@@ -128,13 +128,14 @@ class Parametro
 	function GetOne($Codigo)
     {
 			$piloto;
-			if (file_exists('data.xml'))
+			if (file_exists($this->ruta_xml))
 			{
 				$xml = simplexml_load_file($this->ruta_xml);
 			}
 			else
 			{
-				exit("No se pudo cargar los datos.");
+				echo '<script>alert("No se pudieron cargar los datos.");</script>';
+				return false;
 			}
 
             $lista=new parParametrica();
@@ -155,21 +156,24 @@ class Parametro
                 }
             }
             if ($encontrado)
+			{
                 return $param;
+			}
             else
+			{
                 return null;
-            //return BD.Parametrica.FirstOrDefault(p => p.nParCodigo == Codigo);
+			}
     }
 	
 	function getListTarifario()
     {
-		if (file_exists('data.xml'))
+		if (file_exists($this->ruta_xml))
 		{
 			$xml = simplexml_load_file($this->ruta_xml);
 		}
 		else
 		{
-			echo '<script>alert("No se pudo cargar los datos.");</script>';
+			echo '<script>alert("No se pudieron cargar los datos.");</script>';
 			return false;
 		}
 		return $xml->tarifario->registro;
