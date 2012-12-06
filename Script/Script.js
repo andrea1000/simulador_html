@@ -73,9 +73,10 @@ function getCboAgencia(object,selitem)
 			{
 			   var nParCodigo = $(this).find('nParCodigo').text();
 			   var cParNombre = $(this).find('cParNombre').text();
+			   var cParValor = $(this).find('cParValor').text();
 			   if(nParCodigo>=57 && nParCodigo<=72)
 			   {
-			   	  $(object).append(new Option(cParNombre,nParCodigo));
+			   	  $(object).append(new Option(cParNombre,cParValor));
 			   }
 			});
 		});
