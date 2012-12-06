@@ -9,7 +9,7 @@ if($_POST)
 }
 ?>
 <div class="formulario">
-    <form method="post" onsubmit="return validarDeposito()">
+    <form id="formDeposito" name="formDeposito" method="post" onsubmit="return validarDeposito()">
     <table class="form">
         <tbody>
             <tr>
@@ -150,6 +150,7 @@ if($_POST)
             </tr>
         </tbody>
     </table>
+    <input type="hidden" id="pdf" name="pdf" />
     </form>
 </div>
 <script>
@@ -159,6 +160,7 @@ if($_POST)
 	getCboAgencia("#cboAgencia","<?php echo $_POST["cboAgencia"];?>");
 	getTxtAnioBase("#txtAnioBase");
 	getTxtITF("#txtITF");
+	$("#pdf").val($("#formDeposito").html());
 </script>
 <?php
 include 'footer.php';

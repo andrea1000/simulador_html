@@ -2,7 +2,7 @@
 include 'header.php';
 ?>
 <div class="formulario"> 
-	<form method="post">         
+	<form id="formCredito" name="formCredito" method="post" onsubmit="return validarCredito()">         
     <table class="form">
         <tbody>
             <tr>
