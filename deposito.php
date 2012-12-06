@@ -114,7 +114,7 @@ if($_POST)
                                 <label>Tasa Efectiva Anual</label>
                             </td>
                             <td class="input">
-                                <input type="text" readonly="true" class="numerico" value="<?php echo $ClsDeposito->Tasa;?>">
+                                <input type="text" readonly="true" class="numerico" value="<?php echo $ClsDeposito->Tasa;?>" style="width:125px;"> %
                             </td>
                         </tr>
                         <tr>

@@ -21,32 +21,40 @@ class ClassDeposito
 		$diasMensual=$Parametro->GetValorParametro(ParametroPadre::Mes);
 		$anioBase=$Parametro->GetValorParametro(ParametroPadre::AnioBase);
 		
+		//$tarifario = $Parametro->GetTarifario(ParametroPadre::TipoDeposito, $pCodProducto, $pCodAgencia, $pCodMoneda, $pMonto);
+		if ($tarifario == null)
+		{
+			/*ExisteError = true;
+			Mensaje = "No existe ningún tarifario para los valores ingresados.";
+			return;*/
+		}
 		
 		//$this->Tasa = $parTarifario->nTarTasaMinima;
-		$this->Tasa = 10;
-
+		$this->Tasa=2;		
 		$this->Monto=$pMonto;
+		
 		if ($pTipoProd != TipoProducto::CTS)
         {
 			$this->ITF = $_ITF;
 		}
 		
-		switch ($pTipoProd)
+		switch($pTipoProd)
             {
                 case TipoProducto::Corriente:
-
+				
                     $FACTOR = (pow((1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
                     $this->InteresGanado = $FACTOR * $pMonto;
                     break;
+					
                 case TipoProducto::PlazoFijo:
 
                     $tarDia=$Parametro->GetTarifarioDia(ParametroPadre::TipoDeposito, $pCodProducto, $pCodAgencia, $pCodMoneda, $pMonto,$pPlazo);
-                    if ($tarDia != "")
+                    if($tarDia != "")
 					{
-                        $this->Tasa = 0;
+                        echo $this->Tasa = $tarDia->nTDTasa;
 					}
 
-                    switch ($pModalidad)
+                    switch($pModalidad)
                     {
                         case ModalidadInteres::Vencimiento:
                             $FACTOR = (pow((Double)(1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
@@ -60,13 +68,15 @@ class ClassDeposito
                     }
                     $this->InteresGanado = $FACTOR * $pMonto;
                     break;
+					
                 case TipoProducto::CTS:
+				
                     $FACTOR = (pow((1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
                     $this->InteresGanado = $FACTOR * $pMonto;
                     break;
             }
 
-            $this->ITFCalculado = ($this->Monto + $this->InteresGanado) * ($_ITF / 100.00);
+            $this->ITFCalculado=($this->Monto + $this->InteresGanado) * ($_ITF / 100.00);
 			$this->TotalPagar=$this->Monto + $this->InteresGanado - $this->ITFCalculado;
 	}
 
