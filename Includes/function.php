@@ -17,25 +17,24 @@ class ClassDeposito
 		$parTarifario=new parTarifario();
 		
 		$FACTOR=0;
-		$_ITF=$Parametro->GetValorParametro(ParametroPadre::ITF);
+		$_ITF=number_format($Parametro->GetValorParametro(ParametroPadre::ITF),3);
 		$diasMensual=$Parametro->GetValorParametro(ParametroPadre::Mes);
 		$anioBase=$Parametro->GetValorParametro(ParametroPadre::AnioBase);
 		
-		//$tarifario = $Parametro->GetTarifario(ParametroPadre::TipoDeposito, $pCodProducto, $pCodAgencia, $pCodMoneda, $pMonto);
+		$tarifario = $Parametro->GetTarifario(ParametroPadre::TipoDeposito, $pCodProducto, $pCodAgencia, $pCodMoneda, $pMonto);
 		if ($tarifario == null)
 		{
-			/*ExisteError = true;
-			Mensaje = "No existe ningún tarifario para los valores ingresados.";
-			return;*/
+			echo '<script>alert("No existe ningún tarifario para los valores ingresados.");</script>';
+			return false;
 		}
 		
-		//$this->Tasa = $parTarifario->nTarTasaMinima;
-		$this->Tasa=2;		
+		$this->Tasa = number_format($tarifario->nTarTasaMinima,2);
+
 		$this->Monto=$pMonto;
 		
 		if ($pTipoProd != TipoProducto::CTS)
         {
-			$this->ITF = $_ITF;
+			$this->ITF = number_format($_ITF,3);
 		}
 		
 		switch($pTipoProd)
@@ -43,7 +42,7 @@ class ClassDeposito
                 case TipoProducto::Corriente:
 				
                     $FACTOR = (pow((1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
-                    $this->InteresGanado = $FACTOR * $pMonto;
+                    $this->InteresGanado = number_format($FACTOR * $pMonto,2);
                     break;
 					
                 case TipoProducto::PlazoFijo:
@@ -51,7 +50,7 @@ class ClassDeposito
                     $tarDia=$Parametro->GetTarifarioDia(ParametroPadre::TipoDeposito, $pCodProducto, $pCodAgencia, $pCodMoneda, $pMonto,$pPlazo);
                     if($tarDia != "")
 					{
-                        echo $this->Tasa = $tarDia->nTDTasa;
+                        $this->Tasa = $tarDia->nTDTasa;
 					}
 
                     switch($pModalidad)
@@ -66,18 +65,18 @@ class ClassDeposito
                             $FACTOR = (1 - pow((Double)(1 + $this->Tasa / 100.00), (Double)(-1)) * ($diasMensual / $anioBase));
                             break;
                     }
-                    $this->InteresGanado = $FACTOR * $pMonto;
+                    $this->InteresGanado = number_format($FACTOR * $pMonto,2);
                     break;
 					
                 case TipoProducto::CTS:
 				
                     $FACTOR = (pow((1 + $this->Tasa / 100.00), ($pPlazo / $anioBase)) - 1);
-                    $this->InteresGanado = $FACTOR * $pMonto;
+                    $this->InteresGanado = number_format($FACTOR * $pMonto,2);
                     break;
             }
-
-            $this->ITFCalculado=($this->Monto + $this->InteresGanado) * ($_ITF / 100.00);
-			$this->TotalPagar=$this->Monto + $this->InteresGanado - $this->ITFCalculado;
+			
+            $this->ITFCalculado=number_format(($this->Monto+$this->InteresGanado)*(number_format($_ITF,3)/100),2);
+			$this->TotalPagar=number_format($this->Monto + $this->InteresGanado - $this->ITFCalculado,2);
 	}
 
 }

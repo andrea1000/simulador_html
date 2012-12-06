@@ -9,7 +9,7 @@ if($_POST)
 }
 ?>
 <div class="formulario">
-    <form method="post">
+    <form method="post" onsubmit="return validarDeposito()">
     <table class="form">
         <tbody>
             <tr>
@@ -59,7 +59,7 @@ if($_POST)
                     <label>Monto</label>
                 </td>
                 <td class="input">
-                    <input name="txtMonto" type="text" class="numerico" id="txtMonto" value="<?php echo $_POST["txtMonto"];?>">
+                    <input name="txtMonto" type="text" class="numerico" id="txtMonto" value="<?php echo $_POST["txtMonto"]; ?>">
                 </td>
             </tr>
             <tr>
@@ -108,13 +108,13 @@ if($_POST)
                                 <label>Interés Generado</label>
                             </td>
                             <td class="input">
-                                <input type="text" readonly="true" class="numerico" value="<?php echo $ClsDeposito->InteresGanado;?>">
+                                <input name="txtInteresGanado" type="text" class="numerico" id="txtInteresGanado" value="<?php echo $ClsDeposito->InteresGanado;?>" readonly="true">
                             </td>
                             <td class="label">
                                 <label>Tasa Efectiva Anual</label>
                             </td>
                             <td class="input">
-                                <input type="text" readonly="true" class="numerico" value="<?php echo $ClsDeposito->Tasa;?>" style="width:125px;"> %
+                                <input name="txtTasa" type="text" class="numerico" id="txtTasa" style="width:125px;" value="<?php echo $ClsDeposito->Tasa;?>" readonly="true"> %
                             </td>
                         </tr>
                         <tr>
@@ -122,7 +122,7 @@ if($_POST)
                                 <label>ITF</label>
                             </td>
                             <td class="input">
-                                <input type="text" readonly="true" class="numerico" value="<?php echo $ClsDeposito->ITF;?>">
+                                <input type="text" readonly="true" class="numerico" value="<?php echo $ClsDeposito->ITFCalculado;?>">
                             </td>
                             <td class="label">
                                 <label>Año Base</label>
